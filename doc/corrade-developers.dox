@@ -537,11 +537,15 @@ tool.
 11. Wait for the CIs to get green
 12. Update `conanfile.py` with a new version --- this *has to be* done before
     the version is tagged.
-13. Tag a new version using @cb{.sh} git tag -a v20XY.ab @ce, say just
+13. Update Debian package changelog in `package/debian/changelog`, copypasting
+    the last entry, updating it and using @cb{.sh} date -R @ce for a date ---
+    again, this *should be* done before the version is tagged so stable
+    releases in PPAs can be done directly from the tag with no extra patching
+14. Tag a new version using @cb{.sh} git tag -a v20XY.ab @ce, say just
     `Version 20XY.ab` as a message
-14. Push the tag, verify that the CIs are still green
-15. Add content  to the corresponding Magnum release announcement
-16. Update versions of ArchLinux AUR packages:
+15. Push the tag, verify that the CIs are still green
+16. Add content  to the corresponding Magnum release announcement
+17. Update versions of ArchLinux AUR packages:
     -   run `makepkg` in `package/archlinux/corrade-git`, verify it builds and
         says correct version, ideally with `r0` at the ennd
     -   copy the updated `PKGBUILD` to the AUR package repo, run
@@ -549,13 +553,11 @@ tool.
     -   commit the updated `PKGBUILD` and `.SRCINFO`, push
     -   after pushing all, verify that the version is updated in the AUR web
         interface as well
-17. Update Debian package changelog in `package/debian/changelog`, copypasting
-    the last entry, updating it and using the Git tag date+time for it (note
-    that the date format is slightly different)
 18. Update Homebrew package versions
-19. Ask someone to update Vcpkg packages
-20. Close the 20XY.ab GitHub milestone
-21. Add link to the release notes to the tag on GitHub
+19. Ask someone to update the Ubuntu PPA
+20. Ask someone to update Vcpkg packages
+21. Close the 20XY.ab GitHub milestone
+22. Add link to the release notes to the tag on GitHub
 
 */
 }
